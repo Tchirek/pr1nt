@@ -1,0 +1,29 @@
+{
+  "rules": [
+    {
+      "allowed": {
+        "origins": [
+          "https://print.example.com",
+          "https://pics.example.com",
+          "https://photohost-frontend.pages.dev",
+          "https://*.photohost-frontend.pages.dev",
+          "http://localhost:3000",
+          "http://127.0.0.1:3000",
+          "http://localhost:5173"
+        ],
+        "methods": [
+          "GET",
+          "HEAD",
+          "PUT"
+        ],
+        "headers": [
+          "*"
+        ]
+      },
+      "exposeHeaders": [
+        "ETag"
+      ],
+      "maxAgeSeconds": 3600
+    }
+  ]
+}

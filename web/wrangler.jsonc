@@ -1,0 +1,52 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "609-yuelanshi-web",
+  "main": ".open-next/worker.js",
+  "keep_vars": true,
+  "compatibility_date": "2026-04-27",
+  "compatibility_flags": [
+    "nodejs_compat",
+    "global_fetch_strictly_public"
+  ],
+  "build": {
+    "command": "npx opennextjs-cloudflare build"
+  },
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "observability": {
+    "enabled": true
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "609-yuelanshi-web"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "PRINT_KV",
+      "id": "65d7b9086aab4017877efc3bd30bc36a",
+      "preview_id": "65d7b9086aab4017877efc3bd30bc36a"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "PRINT_STAGING",
+      "bucket_name": "photohost"
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "PRINT_DB",
+      "database_name": "609-print",
+      "database_id": "d62b21df-3cf5-44c8-b9be-ff7e7cadc032"
+    }
+  ],
+  "vars": {
+    "R2_ACCOUNT_ID": "your-account-id",
+    "R2_BUCKET_NAME": "photohost",
+    "NORMALPICS_ORIGINS": "https://pics.example.com,https://photohost-frontend.pages.dev"
+  }
+}

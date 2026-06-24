@@ -1,0 +1,15 @@
+PRINT_SHARED_SECRET=replace-with-the-same-secret-as-local-server
+LOCAL_SERVER_BASE_URL=https://your-tunnel-domain.example.com
+UPLOAD_SIGNING_SECRET=replace-with-a-long-random-string
+PRINT_SYNC_SECRET=replace-with-a-long-random-print-sync-secret
+NORMALPICS_HANDOFF_SECRET=replace-with-a-shared-normalpics-handoff-secret
+R2_ACCESS_KEY_ID=replace-with-r2-access-key-id
+R2_SECRET_ACCESS_KEY=replace-with-r2-secret-access-key
+ADMIN_TOKEN=replace-with-admin-token
+DEFAULT_BW_PRICE=0.2
+DEFAULT_COLOR_PRICE=1
+DEFAULT_ALIPAY_QR=https://example.com/alipay.png
+DEFAULT_WECHAT_QR=https://example.com/wechat.png
+DEFAULT_NOTICE_MARKDOWN=# Notice
+DEFAULT_BW_PRINTER=HP LaserJet 1022
+DEFAULT_COLOR_PRINTER=Canon MG3000 series
