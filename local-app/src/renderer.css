@@ -1,0 +1,189 @@
+:root {
+  color-scheme: light;
+  --ink: #211f1a;
+  --muted: #786f63;
+  --line: #e6ded1;
+  --panel: #fffdf8;
+  --canvas: #f8f4ec;
+  --green: #2f7d4f;
+  --danger: #b43b3b;
+  --warning: #946a22;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+  user-select: none;
+}
+
+.shell {
+  display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
+  gap: 14px;
+  height: 100%;
+  padding: 18px;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  margin: 0 0 3px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-button {
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.78);
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.icon-button:hover {
+  background: #fff;
+  border-color: #d2c7b7;
+}
+
+.icon-button:active {
+  transform: scale(0.96);
+}
+
+.icon-button svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.status-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 58px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 253, 248, 0.84);
+  padding: 12px 14px;
+  box-shadow: 0 16px 45px rgba(62, 49, 28, 0.08);
+}
+
+.pulse {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: var(--warning);
+  box-shadow: 0 0 0 7px rgba(148, 106, 34, 0.12);
+}
+
+.status-card[data-phase="ready"] .pulse {
+  background: var(--green);
+  box-shadow: 0 0 0 7px rgba(47, 125, 79, 0.12);
+}
+
+.status-card[data-phase="failed"] .pulse {
+  background: var(--danger);
+  box-shadow: 0 0 0 7px rgba(180, 59, 59, 0.12);
+}
+
+.status-label {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.status-message {
+  margin: 2px 0 0;
+  font-size: 14px;
+}
+
+.admin-frame-wrap {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: var(--panel);
+  box-shadow: 0 18px 55px rgba(62, 49, 28, 0.10);
+}
+
+#admin-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.admin-frame-wrap.ready #admin-frame {
+  opacity: 1;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, #fffdf8, #f8f4ec);
+  transition: opacity 180ms ease;
+  z-index: 2;
+}
+
+.admin-frame-wrap.ready .placeholder {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 2px solid #d7cbbb;
+  border-top-color: var(--ink);
+  border-radius: 999px;
+  animation: spin 850ms linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

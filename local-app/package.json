@@ -1,0 +1,55 @@
+{
+  "name": "609-local-app",
+  "version": "0.1.0",
+  "private": true,
+  "description": "609 Local Print Service desktop launcher",
+  "main": "src/main.cjs",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable",
+    "pack": "electron-builder --win portable --publish never"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "top.tchirek.pr1nt.local",
+    "productName": "Room 101 Print Service",
+    "asar": true,
+    "directories": {
+      "output": "../dist/609-local-app"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "../local-server",
+        "to": "local-server",
+        "filter": [
+          "local-server.exe",
+          ".env",
+          "README-DEPLOY.txt",
+          "bin/**"
+        ]
+      },
+      {
+        "from": "../local-admin",
+        "to": "local-admin"
+      }
+    ],
+    "win": {
+      "target": [
+        "portable"
+      ],
+      "signAndEditExecutable": false,
+      "artifactName": "609-Local-Service-${version}-portable.${ext}"
+    },
+    "portable": {
+      "artifactName": "609-Local-Service-${version}-portable.${ext}"
+    }
+  }
+}

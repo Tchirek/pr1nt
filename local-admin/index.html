@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>609&#x9605;&#x89C8;&#x5BA4; Local Admin</title>
+    <link rel="stylesheet" href="/admin/styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">609 Local Control</p>
+          <h1>609&#x9605;&#x89C8;&#x5BA4; &#x7BA1;&#x7406;&#x7AEF;</h1>
+          <p class="subcopy">
+            &#x672C;&#x9875;&#x4EC5;&#x5728; localhost &#x63D0;&#x4F9B;&#xFF0C;&#x7528;&#x4E8E;&#x7EF4;&#x62A4;&#x4EF7;&#x683C;&#x3001; QR &#x7801;&#x3001;&#x6253;&#x5370;&#x673A;&#x548C;&#x961F;&#x5217;&#x3002;
+          </p>
+        </div>
+        <form id="auth-form" class="token-card">
+          <label for="admin-token">&#x7BA1;&#x7406;&#x4EE4;&#x724C;</label>
+          <div class="token-row">
+            <input id="admin-token" type="password" autocomplete="off" placeholder="LOCAL_ADMIN_TOKEN" />
+            <button type="submit">&#x8FDE;&#x63A5;</button>
+          </div>
+          <p id="auth-status" class="muted">&#x8BF7;&#x8F93;&#x5165;&#x672C;&#x5730; .env &#x4E2D;&#x7684;&#x7BA1;&#x7406;&#x4EE4;&#x724C;&#x3002;</p>
+        </form>
+      </header>
+
+      <section id="flash" class="flash hidden"></section>
+
+      <section class="grid two-up">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Pricing</p>
+              <h2>&#x4EF7;&#x683C;&#x4E0E;&#x6837;&#x4F8B;</h2>
+            </div>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>&#x9ED1;&#x767D;&#x5355;&#x4EF7;</span>
+              <input id="price-bw" type="number" step="0.01" min="0" />
+            </label>
+            <label>
+              <span>&#x5F69;&#x8272;&#x5355;&#x4EF7;</span>
+              <input id="price-color" type="number" step="0.01" min="0" />
+            </label>
+          </div>
+          <div class="example-card">
+            <p class="eyebrow">Example</p>
+            <p id="price-example">&#x9ED1;&#x767D; 12 &#x9875; = 0.00 &#x5143; | &#x5F69;&#x8272; 12 &#x9875; = 0.00 &#x5143;</p>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Printers</p>
+              <h2>&#x6253;&#x5370;&#x673A;&#x9009;&#x62E9;</h2>
+            </div>
+            <button id="refresh-printers" type="button" class="secondary">&#x5237;&#x65B0;</button>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>&#x9ED1;&#x767D;&#x6253;&#x5370;&#x673A;</span>
+              <select id="printer-bw"></select>
+            </label>
+            <label>
+              <span>&#x5F69;&#x8272;&#x6253;&#x5370;&#x673A;</span>
+              <select id="printer-color"></select>
+            </label>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Converter</p>
+              <h2>&#x6587;&#x6863;&#x8F6C; PDF &#x5F15;&#x64CE;</h2>
+            </div>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>&#x8F6C;&#x6362;&#x65B9;&#x5F0F;</span>
+              <select id="converter-kind">
+                <option value="libreoffice">LibreOffice</option>
+                <option value="wps">WPS Office</option>
+                <option value="office">Microsoft Office</option>
+              </select>
+            </label>
+            <label>
+              <span>LibreOffice &#x8DEF;&#x5F84;</span>
+              <input id="libreoffice-path" type="text" placeholder="soffice &#x6216;&#x5B8C;&#x6574;&#x8DEF;&#x5F84;" />
+            </label>
+          </div>
+          <div class="example-card">
+            <p class="eyebrow">Behavior</p>
+            <p id="converter-help" class="muted"></p>
+          </div>
+        </article>
+      </section>
+
+      <section class="grid two-up">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Payment</p>
+              <h2>QR &#x7801;&#x7BA1;&#x7406;</h2>
+            </div>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>Alipay QR</span>
+              <input id="qr-alipay-file" type="file" accept="image/*" />
+            </label>
+            <label>
+              <span>WeChat QR</span>
+              <input id="qr-wechat-file" type="file" accept="image/*" />
+            </label>
+          </div>
+          <div class="qr-grid">
+            <figure class="qr-card">
+              <figcaption>Alipay</figcaption>
+              <img id="qr-alipay-preview" alt="Alipay preview" />
+            </figure>
+            <figure class="qr-card">
+              <figcaption>WeChat</figcaption>
+              <img id="qr-wechat-preview" alt="WeChat preview" />
+            </figure>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Notice</p>
+              <h2>&#x516C;&#x544A;&#x6587;&#x6848;</h2>
+            </div>
+          </div>
+          <label class="stack">
+            <span>Markdown</span>
+            <textarea id="notice-markdown" rows="10" placeholder="# Notice"></textarea>
+          </label>
+          <div class="markdown-preview">
+            <p class="eyebrow">&#x5B9E;&#x65F6;&#x9884;&#x89C8;</p>
+            <div id="notice-preview"></div>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Sync</p>
+            <h2>&#x4FDD;&#x5B58;&#x914D;&#x7F6E;</h2>
+          </div>
+          <button id="save-config" type="button">&#x4FDD;&#x5B58;&#x5230; Cloudflare KV</button>
+        </div>
+        <p class="muted">
+          &#x4EF7;&#x683C;&#x3001; QR &#x7801;&#x3001;&#x6253;&#x5370;&#x673A;&#x540D;&#x79F0;&#x548C;&#x516C;&#x544A;&#x4F1A;&#x540C;&#x6B65;&#x5230; Cloudflare KV&#x3002;&#x8F6C;&#x6362;&#x5F15;&#x64CE;&#x9009;&#x62E9;&#x4F1A;&#x53E6;&#x5B58;&#x5230;&#x672C;&#x5730; runtime-config.json&#x3002;
+        </p>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Diagnostics</p>
+            <h2>&#x94FE;&#x8DEF;&#x8BCA;&#x65AD;</h2>
+          </div>
+          <div class="button-row">
+            <button id="run-diagnostics" type="button">&#x8FD0;&#x884C;&#x8BCA;&#x65AD;</button>
+            <button id="probe-websocket" type="button" class="secondary">WebSocket &#x6D4B;&#x8BD5;</button>
+          </div>
+        </div>
+        <p class="muted">
+          &#x9762;&#x5411;&#x90E8;&#x7F72;&#x673A;&#x7684;&#x5FEB;&#x901F;&#x6392;&#x969C;&#x89C6;&#x56FE;&#x3002;&#x4F1A;&#x68C0;&#x67E5;&#x6253;&#x5370;&#x673A;&#x3001; SumatraPDF&#x3001;&#x6587;&#x6863;&#x8F6C;&#x6362;&#x5668;&#x3001; Cloudflare KV&#xFF0C;&#x5E76;&#x53EF;&#x4EE5;&#x4E3B;&#x52A8;&#x6D4B;&#x4E00;&#x6B21;&#x672C;&#x673A; WebSocket &#x5E7F;&#x64AD;&#x3002;
+        </p>
+        <p id="diagnostics-meta" class="muted">&#x8FDE;&#x63A5;&#x7BA1;&#x7406;&#x7AEF;&#x540E;&#x53EF;&#x8FD0;&#x884C;&#x8BCA;&#x65AD;&#x3002;</p>
+        <div id="diagnostics-list" class="diagnostics-list empty-state">
+          &#x8BF7;&#x5148;&#x8F93;&#x5165;&#x7BA1;&#x7406;&#x4EE4;&#x724C;&#xFF0C;&#x7136;&#x540E;&#x70B9;&#x51FB;&#x300C;&#x8FD0;&#x884C;&#x8BCA;&#x65AD;&#x300D;&#x3002;
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <div>
+            <p class="eyebrow">Realtime</p>
+            <h2>实时链路</h2>
+          </div>
+        </div>
+        <p class="muted">
+          这里会实时显示部署机当前正在接收的文件、文档转换情况，以及刚刚进入队列的打印任务。
+        </p>
+        <p id="live-stream-status" class="muted">连接管理端后会自动订阅本机状态流。</p>
+        <div id="live-activities" class="jobs-list empty-state">
+          还没有实时活动。上传文件或转换文档后，这里会立即出现进度。
+        </div>
+      </section>
+
+      <section class="grid two-up queue-layout">
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">Queue</p>
+              <h2>&#x6D3B;&#x52A8;&#x4EFB;&#x52A1;</h2>
+            </div>
+            <button id="refresh-jobs" type="button" class="secondary">&#x5237;&#x65B0;</button>
+          </div>
+          <div id="active-jobs" class="jobs-list empty-state">
+            &#x6682;&#x65E0;&#x6D3B;&#x52A8;&#x4EFB;&#x52A1;&#x3002;
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-header">
+            <div>
+              <p class="eyebrow">History</p>
+              <h2>&#x5386;&#x53F2;&#x8BB0;&#x5F55;</h2>
+            </div>
+          </div>
+          <div id="history-jobs" class="jobs-list empty-state">
+            &#x6682;&#x65E0;&#x5386;&#x53F2;&#x8BB0;&#x5F55;&#x3002;
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/admin/app.js"></script>
+  </body>
+</html>
